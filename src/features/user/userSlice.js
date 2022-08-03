@@ -49,6 +49,9 @@ const userSlice = createSlice({
             state.user = null;
             state.isSidebarOpen = false;
             removeUserFromLocalStorage();
+            if (payload) {
+                toast.success(payload);
+            }
         }
     },
     extraReducers: {
@@ -79,6 +82,20 @@ const userSlice = createSlice({
             toast.success(`Welcome back ${user.name}`);
         },
         [loginUser.rejected]: (state, { payload }) => {
+            state.isLoading = false;
+            toast.error(payload);
+        },
+        [updateUser.pending]: (state) => {
+            state.isLoading = false;
+        },
+        [updateUser.fulfilled]: (state, { payload }) => {
+            const { user } = payload;
+            state.isLoading = false;
+            state.user = user;
+            addUserToLocalStorage(user);
+            toast.success("User updated!");
+        },
+        [updateUser.rejected]: (state, { payload }) => {
             state.isLoading = false;
             toast.error(payload);
         }

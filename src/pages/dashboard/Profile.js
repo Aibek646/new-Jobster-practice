@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormRow } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,16 @@ const Profile = () => {
         location: user?.location || ""
     });
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { name, email, lastName, location } = userData;
+        if (!name || !email || !lastName || !location) {
+            toast.error("please fill out all fields");
+            return;
+        }
+        dispatch(updateUser(userData));
+    };
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -24,7 +34,7 @@ const Profile = () => {
 
     return (
         <Wrapper>
-            <form className="form">
+            <form onSubmit={handleSubmit} className="form">
                 <h3>profile</h3>
                 <div className="form-center">
                     <FormRow
@@ -36,7 +46,7 @@ const Profile = () => {
                     <FormRow
                         type="text"
                         labelText="last name"
-                        name="last name"
+                        name="lastName"
                         value={userData.lastName}
                         handleChange={handleChange}
                     />
@@ -52,7 +62,13 @@ const Profile = () => {
                         value={userData.location}
                         handleChange={handleChange}
                     />
-                    <button></button>
+                    <button
+                        type="submit"
+                        className="btn btn-block"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Please wait..." : "save changes"}
+                    </button>
                 </div>
             </form>
         </Wrapper>
