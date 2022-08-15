@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import {
     clearValues,
     createJob,
+    editJob,
     handleChange
 } from "../../features/job/jobSlice";
 
@@ -35,6 +36,13 @@ const AddJob = () => {
             return;
         }
         if (isEditing) {
+            dispatch(
+                editJob({
+                    jobId: editJobId,
+                    job: { position, company, jobLocation, jobType, status }
+                })
+            );
+            return;
         }
         dispatch(
             createJob({ position, company, jobLocation, jobType, status })
@@ -46,6 +54,17 @@ const AddJob = () => {
         const value = e.target.value;
         dispatch(handleChange({ name: name, value: value }));
     };
+
+    useEffect(() => {
+        if (!isEditing) {
+            dispatch(
+                handleChange({
+                    name: "jobLocation",
+                    value: user.location
+                })
+            );
+        }
+    }, []);
 
     return (
         <Wrapper>

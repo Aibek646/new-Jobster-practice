@@ -5,6 +5,7 @@ import moment from "moment";
 import Wrapper from "../assets/wrappers/Job";
 import { FaBriefcase, FaLocationArrow } from "react-icons/fa";
 import JobInfo from "./JobInfo";
+import { setEditJob, deleteJob } from "../features/job/jobSlice";
 
 const Job = ({
     _id,
@@ -37,14 +38,26 @@ const Job = ({
                         <Link
                             to="/add-job"
                             className="btn edit-btn"
-                            onClick={() => {}}
+                            onClick={() =>
+                                dispatch(
+                                    setEditJob({
+                                        editJobId: _id,
+                                        position,
+                                        company,
+                                        jobLocation,
+                                        jobType,
+                                        createdAt,
+                                        status
+                                    })
+                                )
+                            }
                         >
                             Edit
                         </Link>
                         <button
                             type="button"
                             className="btn delete-btn"
-                            onClick={() => {}}
+                            onClick={() => dispatch(deleteJob(_id))}
                         >
                             delete
                         </button>
