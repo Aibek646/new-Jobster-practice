@@ -4,6 +4,7 @@ import Wrapper from "../assets/wrappers/JobsContainer";
 import { getAllJobs } from "../features/allJobs/allJobSlice";
 import Loading from "./Loading";
 import Job from "../components/Job";
+import { PageBtnContainer } from ".";
 
 const JobsContainer = () => {
     const {
@@ -49,6 +50,7 @@ const JobsContainer = () => {
                     return <Job key={job._id} {...job} />;
                 })}
             </div>
+            {numOfPages > 1 && <PageBtnContainer />}
         </Wrapper>
     );
 };

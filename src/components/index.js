@@ -6,7 +6,9 @@ import Job from "./Job";
 import JobsContainer from "./JobsContainer";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
+import PageBtnContainer from "./PageBtnContainer";
 import SearchContainer from "./SearchContainer";
+import StatsContainer from "./StatsContainer";
 
 export {
     JobsContainer,
@@ -16,5 +18,7 @@ export {
     BigSidebar,
     Navbar,
     FormRowSelect,
-    Job
+    Job,
+    StatsContainer,
+    PageBtnContainer
 };
