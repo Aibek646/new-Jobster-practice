@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 function StatsContainer() {
     const { stats } = useSelector((store) => store.allJobs);
+    console.log(stats);
 
     const defaultStats = [
         {
