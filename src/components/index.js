@@ -1,4 +1,5 @@
 import BigSidebar from "./BigSidebar";
+import ChartsContainer from "./ChartsContainer";
 import FormRow from "./FormRow";
 import FormRowSelect from "./FormRowSelect";
 import Job from "./Job";
@@ -20,5 +21,6 @@ export {
     FormRowSelect,
     Job,
     StatsContainer,
-    PageBtnContainer
+    PageBtnContainer,
+    ChartsContainer
 };
